@@ -17,14 +17,19 @@ for notebook in ipynb_files:
     output_file = f"/tmp/{os.path.basename(notebook)}.out"
 
     try:
-        subprocess.run([
-            "nbconvert",
-            "--to", "notebook",
-            "--execute",
-            "--allow-errors",
-            notebook,
-            "--output", output_file
-        ], check=True)
+        subprocess.run(
+            [
+                "nbconvert",
+                "--to",
+                "notebook",
+                "--execute",
+                "--allow-errors",
+                notebook,
+                "--output",
+                output_file,
+            ],
+            check=True,
+        )
     except subprocess.CalledProcessError as e:
         print(f"Errors found in {notebook}. Check {output_file} for details.")
         print(e.output.decode())
